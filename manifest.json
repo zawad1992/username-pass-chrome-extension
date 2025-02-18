@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name": "Simple Password Manager",
+    "name": "Simple Password copier",
     "version": "1.0",
-    "description": "A simple password manager with copy functionality",
+    "description": "A simple password copy functionality",
     "action": {
       "default_popup": "popup.html",
       "default_icon": {
