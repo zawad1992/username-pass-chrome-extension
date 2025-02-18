@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Manager</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .copy-btn {
+            min-width: 120px;
+        }
+        .success-message {
+            display: none;
+            color: green;
+            font-size: 0.8em;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <!-- Username Section -->
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Username</h5>
+                        <div class="input-group mb-2">
+                            <input type="text" id="username" class="form-control" value="example_user" readonly>
+                            <button class="btn btn-primary copy-btn" onclick="copyToClipboard('username')">
+                                Copy Username
+                            </button>
+                        </div>
+                        <div id="username-success" class="success-message">Copied to clipboard!</div>
+                    </div>
+                </div>
+
+                <!-- Password Section -->
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Password</h5>
+                        <div class="input-group mb-2">
+                            <input type="password" id="password" class="form-control" value="secretPassword123" readonly>
+                            <button class="btn btn-primary copy-btn" onclick="copyToClipboard('password')">
+                                Copy Password
+                            </button>
+                        </div>
+                        <div id="password-success" class="success-message">Copied to clipboard!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function copyToClipboard(fieldId) {
+            const element = document.getElementById(fieldId);
+            const successMessage = document.getElementById(fieldId + '-success');
+            
+            // Temporarily change type to text if it's a password field
+            if (element.type === 'password') {
+                element.type = 'text';
+            }
+            
+            // Select and copy the text
+            element.select();
+            document.execCommand('copy');
+            
+            // Change password field back to password type
+            if (fieldId === 'password') {
+                element.type = 'password';
+            }
+            
+            // Deselect the text
+            element.setSelectionRange(0, 0);
+            
+            // Show success message
+            successMessage.style.display = 'block';
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
