@@ -1,0 +1,15 @@
+{
+    "credentials": [
+      {
+        "site": "Example Site",
+        "username": "example_user",
+        "password": "secretPassword123"
+      },
+      {
+        "site": "Another Site",
+        "username": "another_user",
+        "password": "anotherPassword456"
+      }
+    ]
+  }
+  
