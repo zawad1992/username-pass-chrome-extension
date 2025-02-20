@@ -1,3 +1,4 @@
+// popup.js
 let credentials = [];
 
 document.addEventListener('DOMContentLoaded', async function() {
@@ -16,8 +17,23 @@ document.addEventListener('DOMContentLoaded', async function() {
             siteSelector.appendChild(option);
         });
         
+        // Load previously selected site
+        chrome.storage.local.get(['selectedSiteIndex'], function(result) {
+            if (result.selectedSiteIndex !== undefined && 
+                result.selectedSiteIndex < credentials.length) {
+                siteSelector.value = result.selectedSiteIndex;
+                updateCredentials();
+            }
+        });
+        
         // Add event listener for site selection
-        siteSelector.addEventListener('change', updateCredentials);
+        siteSelector.addEventListener('change', function() {
+            updateCredentials();
+            // Save selection to storage
+            chrome.storage.local.set({
+                selectedSiteIndex: siteSelector.value
+            });
+        });
     } catch (error) {
         console.error('Error loading config:', error);
     }
